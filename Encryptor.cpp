@@ -2,13 +2,16 @@
 #include <iostream>
 #include <fstream>
 
-Encryptor::Encryptor(const std::string& password) {
+Encryptor::Encryptor(const std::string& password) 
+{
     encryptionKey = GenerateKey(password);
 }
 
 // Generate a key by repeating the password until it’s long enough
-std::string Encryptor::GenerateKey(const std::string& password) {
-    if (password.empty()) {
+std::string Encryptor::GenerateKey(const std::string& password) 
+{
+    if (password.empty()) 
+    {
         std::cerr << "Error: Password cannot be empty!" << std::endl;
         exit(1);
     }
@@ -17,17 +20,20 @@ std::string Encryptor::GenerateKey(const std::string& password) {
 
 
 // XOR each character with the generated key
-void Encryptor::XorEncryptDecrypt(std::string& data, const std::string& key) {
+void Encryptor::XorEncryptDecrypt(std::string& data, const std::string& key) 
+{
     size_t keyLength = key.length();
     if (keyLength == 0) return;
 
-    for (size_t i = 0; i < data.length(); ++i) {
+    for (size_t i = 0; i < data.length(); ++i) 
+    {
         data[i] ^= key[i % keyLength];  // Repeat the key dynamically
     }
 }
 
 
-void Encryptor::EncryptFile(const std::string& inputFilename, const std::string& outputFilename) {
+void Encryptor::EncryptFile(const std::string& inputFilename, const std::string& outputFilename) 
+{
     std::ifstream inFile(inputFilename, std::ios::binary);
     if (!inFile) {
         std::cerr << "Error opening input file: " << inputFilename << std::endl;
@@ -41,7 +47,8 @@ void Encryptor::EncryptFile(const std::string& inputFilename, const std::string&
     XorEncryptDecrypt(data, encryptionKey);
 
     std::ofstream outFile(outputFilename, std::ios::binary);
-    if (!outFile) {
+    if (!outFile) 
+    {
         std::cerr << "Error opening output file: " << outputFilename << std::endl;
         return;
     }

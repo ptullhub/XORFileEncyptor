@@ -3,7 +3,8 @@
 
 #include <string>
 
-class Encryptor {
+class Encryptor 
+{
 public:
     explicit Encryptor(const std::string& password);
     void EncryptFile(const std::string& inputFilename, const std::string& outputFilename);
