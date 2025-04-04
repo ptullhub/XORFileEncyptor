@@ -1,31 +1,31 @@
 #include <iostream>
-#include <fstream>
-#include <string>
+#include "Encryptor.h"
 
-void processFile(const std::string& filename) 
-{
-    std::ifstream inFile(filename);
-    if (!inFile) 
-    {
-        std::cerr << "Error opening file: " << filename << std::endl;
-        return;
+int main() {
+    std::string inputFilename, outputFilename, password;
+    char choice;
+
+    std::cout << "Enter input filename: ";
+    std::cin >> inputFilename;
+    std::cout << "Enter output filename: ";
+    std::cin >> outputFilename;
+    std::cout << "Enter password: ";
+    std::cin >> password;
+
+    Encryptor encryptor(password);
+
+    std::cout << "Choose mode: (E)ncrypt or (D)ecrypt? ";
+    std::cin >> choice;
+
+    if (choice == 'E' || choice == 'e') {
+        encryptor.EncryptFile(inputFilename, outputFilename);
+    }
+    else if (choice == 'D' || choice == 'd') {
+        encryptor.DecryptFile(inputFilename, outputFilename);
+    }
+    else {
+        std::cout << "Invalid option. Exiting program." << std::endl;
     }
 
-    std::string line;
-    while (std::getline(inFile, line)) 
-    {
-        std::cout << line << std::endl;  // Display file content
-    }
-
-    inFile.close();
-}
-
-int main() 
-{
-    std::string filename;
-    std::cout << "Enter filename: ";
-    std::cin >> filename;
-
-    processFile(filename);
     return 0;
 }
