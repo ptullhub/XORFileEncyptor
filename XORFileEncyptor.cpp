@@ -1,10 +1,11 @@
 #include <iostream>
 #include "Encryptor.h"
 
-int main() {
+int main() 
+{
     std::string inputFilename, outputFilename, password;
     char choice;
-
+    // Poll input from user
     std::cout << "Enter input filename: ";
     std::cin >> inputFilename;
     std::cout << "Enter output filename: ";
@@ -17,13 +18,16 @@ int main() {
     std::cout << "Choose mode: (E)ncrypt or (D)ecrypt? ";
     std::cin >> choice;
 
-    if (choice == 'E' || choice == 'e') {
+    if (choice == 'E' || choice == 'e') 
+    {
         encryptor.EncryptFile(inputFilename, outputFilename);
     }
-    else if (choice == 'D' || choice == 'd') {
+    else if (choice == 'D' || choice == 'd') 
+    {
         encryptor.DecryptFile(inputFilename, outputFilename);
     }
-    else {
+    else 
+    {
         std::cout << "Invalid option. Exiting program." << std::endl;
     }
 

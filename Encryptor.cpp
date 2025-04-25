@@ -35,7 +35,9 @@ void Encryptor::XorEncryptDecrypt(std::string& data, const std::string& key)
 void Encryptor::EncryptFile(const std::string& inputFilename, const std::string& outputFilename) 
 {
     std::ifstream inFile(inputFilename, std::ios::binary);
-    if (!inFile) {
+    // File not found handle
+    if (!inFile) 
+    {
         std::cerr << "Error opening input file: " << inputFilename << std::endl;
         return;
     }
